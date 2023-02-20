@@ -7,11 +7,16 @@ type TNextPage = (options: Partial<{
     popout: string;
     stay: boolean;
     freeze: boolean;
+    clear: boolean;
     params: Record<string, string | number>;
 } & Record<string, any>>) => void;
 declare const nextPage: TNextPage;
 
-declare const backPage: () => void;
+type TBackPage = (opt: {
+    ignoreFreeze: boolean;
+    toStay: boolean | string;
+}) => void;
+declare const backPage: TBackPage;
 
 declare const ACTIVE_VIEW: {
     key: string;

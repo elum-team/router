@@ -39,18 +39,16 @@ const nextPage: TNextPage = (options) => {
   }
 
   if (!equal(activeSector, newSector)) {
-
-    if (options.clear && currentView !== activeView) {
-      context[currentView] = [defaultSector];
-    }
-
     setter(ACTIVE_VIEW, activeView);
     setter(ACTIVE_PANEL, newSector["panel"]);
     setter(ACTIVE_MODAL, newSector["modal"]);
     setter(ACTIVE_POPOUT, newSector["popout"]);
     setter(ACTIVE_PARAMS, newSector["params"]);
     activeBranch.push(newSector);
-    
+  }
+
+  if (options.clear && currentView !== activeView) {
+    context[currentView] = [defaultSector];
   }
 
 };

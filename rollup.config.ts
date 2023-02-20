@@ -5,7 +5,7 @@ import terser from '@rollup/plugin-terser';
 
 import { RollupOptions } from "rollup";
 
-const external = ["react"]
+const external = ["react", "elum-state"]
 
 const config: RollupOptions[] = [
   {

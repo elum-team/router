@@ -26,6 +26,8 @@
   ],
   "peerDependencies": {
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "elum-state": "^0.3.2",
+    "@vkontakte/vk-bridge": "^2"
   }
 }

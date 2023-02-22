@@ -1,5 +1,3 @@
-import * as react from 'react';
-
 type TNextPage = (options: Partial<{
     view: string;
     panel: string;
@@ -18,40 +16,9 @@ type TBackPage = (opt: {
 }) => void;
 declare const backPage: TBackPage;
 
-declare const ACTIVE_VIEW: {
-    key: string;
-    default: string;
-    get: () => string;
-    set: (v: any) => void;
-    sub: (handle: react.Dispatch<string>) => void;
-};
-declare const ACTIVE_PANEL: {
-    key: string;
-    default: string;
-    get: () => string;
-    set: (v: any) => void;
-    sub: (handle: react.Dispatch<string>) => void;
-};
-declare const ACTIVE_MODAL: {
-    key: string;
-    default: string;
-    get: () => string;
-    set: (v: any) => void;
-    sub: (handle: react.Dispatch<string>) => void;
-};
-declare const ACTIVE_POPOUT: {
-    key: string;
-    default: string;
-    get: () => string;
-    set: (v: any) => void;
-    sub: (handle: react.Dispatch<string>) => void;
-};
-declare const ACTIVE_PARAMS: {
-    key: string;
-    default: Record<string, string | number>;
-    get: () => Record<string, string | number>;
-    set: (v: any) => void;
-    sub: (handle: react.Dispatch<Record<string, string | number>>) => void;
-};
+declare const useParams: () => Record<string, string | number>;
 
-export { ACTIVE_MODAL, ACTIVE_PANEL, ACTIVE_PARAMS, ACTIVE_POPOUT, ACTIVE_VIEW, backPage, nextPage };
+type TAtoms = "view" | "panel" | "modal" | "popout";
+declare const useRouter: (atom: TAtoms) => string;
+
+export { backPage, nextPage, useParams, useRouter };

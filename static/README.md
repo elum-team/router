@@ -1,6 +1,5 @@
 # [![GitHub license](https://badgen.net/badge/license/MIT/blue)](https://github.com/elum-team/router/tree/master/dist/LICENSE) [![npm bundle size](https://img.shields.io/bundlephobia/min/@elum/router)](https://bundlephobia.com/package/@elum/router) [![npm bundle size](https://img.shields.io/bundlephobia/minzip/@elum/router)](https://bundlephobia.com/package/@elum/router)
 
-  
 
 # elum router
 
@@ -12,17 +11,12 @@ This is layered navigation for react applications. Each level will be independen
 
 > YARN
 
-  
-
 yarn add @elum/router
 
 > NPM
 
-  
-
 npm i -s @elum/router
 
-  
 
 ## Getting Started
 
@@ -40,8 +34,8 @@ import { Router } from "@elum/router";
 const app = document.getElementById("app") as HTMLElement;
 const root = createRoot(app);
 root.render(
-	<Router  branch={"startup"}>
-		<App  />
+	<Router branch={"startup"}>
+		<App />
 	</Router>
 );
 ```
@@ -60,7 +54,8 @@ Partial<{
 	stay:  boolean | string; // set stay point
 	freeze:  boolean; // freeze current branch
 	clear:  boolean; // clean up the old branch
-	params:  Record<string, string  |  number>; // set user parameters
+	params:  Record<string, string  |  number>;
+}> // set user parameters
 ```
 
 ```jsx
@@ -72,9 +67,9 @@ const App = () => {
 		nextPage({
 			view: "settings",
 			panel: "theme"
-		})
+		});
 	}
-	return (<button onClick={}>NEXT PAGE</button>)
+	return (<button onClick={handleClick}>NEXT PAGE</button>);
 }
 
 ```
@@ -95,10 +90,10 @@ import { backPage } from "@elum/router";
 
 const App = () => {
 	const handleClick = () => {
-		backPage()
-	}
-	return (<button onClick={}>BACK PAGE</button>)
-}
+		backPage();
+	};
+	return (<button onClick={handleClick}>BACK PAGE</button>);
+};
 ```
 
 ### useParams
@@ -110,8 +105,8 @@ import { useParams } from "@elum/router";
 
 const App = () => {
 	const params = useParams();
-	return (<span>{params.id}</span>)
-}
+	return (<span>{params.id}</span>);
+};
 ```
 
 ### useRouter
@@ -129,5 +124,5 @@ return (
 		<Error  nav={"error"} />
 	</Root>
 	)
-}
+};
 ```

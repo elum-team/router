@@ -21,9 +21,9 @@ const nextPage: TNextPage = (options) => {
   const currentView = getter(ACTIVE_VIEW);
   const activeView = options["view"] || currentView;
 
-  if (!context[activeView]) {
-    context[activeView] = [defaultSector]
-  }
+  const isInit = !context[activeView];
+
+  if (isInit) { context[activeView] = [defaultSector] };
 
   const activeBranch = context[activeView];
   const activeSector = activeBranch[activeBranch.length - 1];
@@ -43,13 +43,18 @@ const nextPage: TNextPage = (options) => {
     newSector[key] = defaultSector[key];
   }
 
-  if (!equal(activeSector, newSector)) {
+  const isEqual = equal(activeSector, newSector);
+
+  if (!isEqual) {
+    activeBranch.push(newSector);
+  }
+
+  if (isInit || !isEqual) {
     setter(ACTIVE_VIEW, activeView);
     setter(ACTIVE_PANEL, newSector["panel"]);
     setter(ACTIVE_MODAL, newSector["modal"]);
     setter(ACTIVE_POPOUT, newSector["popout"]);
     setter(ACTIVE_PARAMS, newSector["params"]);
-    activeBranch.push(newSector);
   }
 
   if (options.clear && currentView !== activeView) {

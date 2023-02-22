@@ -1,3 +1,5 @@
+import { FC, HTMLAttributes } from 'react';
+
 type TNextPage = (options: Partial<{
     view: string;
     panel: string;
@@ -21,4 +23,9 @@ declare const useParams: () => Record<string, string | number>;
 type TAtoms = "view" | "panel" | "modal" | "popout";
 declare const useRouter: (atom: TAtoms) => string;
 
-export { backPage, nextPage, useParams, useRouter };
+interface IRouter extends HTMLAttributes<HTMLDivElement> {
+    branch: string;
+}
+declare const Router: FC<IRouter>;
+
+export { Router, backPage, nextPage, useParams, useRouter };

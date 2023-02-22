@@ -2,6 +2,7 @@ import { ACTIVE_MODAL, ACTIVE_PANEL, ACTIVE_PARAMS, ACTIVE_POPOUT, ACTIVE_VIEW, 
 import { getter, setter } from "elum-state";
 import { Sector } from "../types";
 import indexStay from "./indexStay";
+import bridge from "@vkontakte/vk-bridge";
 
 type TBackPage = (opt: {
   ignoreFreeze: boolean,
@@ -20,7 +21,10 @@ const backPage: TBackPage = (opt = {
   const nextIndex = indexStay(opt.toStay, activeBranch);
   const nextSector = activeBranch[nextIndex];
 
-  if (activeBranch.length === 1) { console.log("end app"); return; };
+  if (activeBranch.length === 1) {
+    bridge.send("VKWebAppClose", { "status": "success" });
+    return;
+  };
   if (activeSector.freeze && !opt.ignoreFreeze) { return; };
 
   activeBranch.splice(nextIndex + 1);

@@ -1,6 +1,6 @@
-import { context } from "../src/atoms";
 import { getter } from "elum-state";
-import { ACTIVE_MODAL, ACTIVE_PANEL, ACTIVE_PARAMS, ACTIVE_POPOUT, ACTIVE_VIEW, backPage, nextPage } from "../src";
+import { ACTIVE_MODAL, ACTIVE_PANEL, ACTIVE_PARAMS, ACTIVE_POPOUT, ACTIVE_VIEW } from "../src/atoms";
+import { backPage, nextPage } from "../src/index";
 
 export const get = () => ({
   view: getter(ACTIVE_VIEW),

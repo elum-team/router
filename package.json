@@ -34,6 +34,7 @@
     "@types/jest": "^29.4.0",
     "@types/lodash.isequal": "^4.5.6",
     "@types/react": "^18.0.28",
+    "@vkontakte/vk-bridge": "^2.7.2",
     "benchmark": "^2.1.4",
     "elum-state": "^0.3.2",
     "jest": "^29.4.3",

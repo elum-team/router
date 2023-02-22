@@ -1,7 +1,7 @@
 {
   "name": "@elum/router",
-  "version": "0.0.1",
-  "description": "Elum State - A state management library for React",
+  "version": "0.0.1-beta.0",
+  "description": "Elum Router - Router for vk mini apps on reactjs",
   "main": "index.js",
   "module": "index.mjs",
   "typings": "index.d.ts",
@@ -13,7 +13,7 @@
   "contributors": [],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GMELUM/elum-state.git"
+    "url": "git@github.com:elum-team/router.git"
   },
   "keywords": [
     "state",

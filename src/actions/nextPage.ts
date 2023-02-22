@@ -20,6 +20,11 @@ const nextPage: TNextPage = (options) => {
 
   const currentView = getter(ACTIVE_VIEW);
   const activeView = options["view"] || currentView;
+
+  if (!context[activeView]) {
+    context[activeView] = [defaultSector]
+  }
+
   const activeBranch = context[activeView];
   const activeSector = activeBranch[activeBranch.length - 1];
 

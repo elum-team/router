@@ -1,6 +1,5 @@
 # [![GitHub license](https://badgen.net/badge/license/MIT/blue)](https://github.com/elum-team/router/tree/master/dist/LICENSE) [![npm bundle size](https://img.shields.io/bundlephobia/min/@elum/router)](https://bundlephobia.com/package/@elum/router) [![npm bundle size](https://img.shields.io/bundlephobia/minzip/@elum/router)](https://bundlephobia.com/package/@elum/router)
 
-
 # elum router
 
 Elum Router - Router for vk mini apps on reactjs.
@@ -16,7 +15,6 @@ yarn add @elum/router
 > NPM
 
 npm i -s @elum/router
-
 
 ## Getting Started
 
@@ -44,7 +42,7 @@ root.render(
 
 **Function** to update the navigation for the next snapshot. Used in a logic function or components.
 
-**view**, **panel**, **modal**, **popout** - parameters reset the state of a higher level. If the "panel" parameter is passed to nextPage, the existing "modal" and "popout" parameters will be reset. And specifying only view resets the panel state to "default"
+**view**, **panel**, **modal**, **popout** - parameters reset the state of a higher level. If the "panel" parameter is passed to nextPage, the existing "modal" and "popout" parameters will be reset. And specifying only view resets the panel state to "default".
 ```ts
 Partial<{
 	view:  string;

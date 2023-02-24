@@ -1,14 +1,7 @@
 {
   "scripts": {
-    "prebuild": "run-script-os",
-    "prebuild:win32": "rd /s /q .\\dist || mkdir .\\dist\\",
-    "prebuild:linux": "rm -rf ./dist/*",
-    "copy": "run-script-os",
-    "copy:win32": "Xcopy .\\static .\\dist /E /H /C /I",
-    "copy:linux": "cp -r static/* ./dist",
-    "build": "yarn prebuild && rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript && yarn copy",
+    "build": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
     "release": "git subtree push --prefix dist https://github.com/elum-team/router release",
-    "start": "ts-node --project tsconfig.node.json -r tsconfig-paths/register index.ts",
     "test": "jest --config jest.config.json",
     "publish:beta": "npm publish --access public --tag beta"
   },
@@ -37,9 +30,12 @@
     "@vkontakte/vk-bridge": "^2.7.2",
     "benchmark": "^2.1.4",
     "elum-state": "^0.3.2",
+    "glob": "^8.1.0",
     "jest": "^29.4.3",
     "lodash.isequal": "^4.5.0",
     "rollup-plugin-cleanup": "^3.2.1",
+    "rollup-plugin-copy": "^3.4.0",
+    "rollup-plugin-copy-glob": "^0.3.2",
     "ts-jest": "^29.0.5"
   }
 }

@@ -4,12 +4,10 @@ import { Sector } from "../types";
 import indexStay from "./indexStay";
 import bridge from "@vkontakte/vk-bridge";
 
-type TBackPage = (opt: {
+const backPage = (opt: Partial<{
   ignoreFreeze: boolean,
   toStay: boolean | string;
-}) => void;
-
-const backPage: TBackPage = (opt = {
+}> = {
   ignoreFreeze: false,
   toStay: false
 }) => {
@@ -18,7 +16,7 @@ const backPage: TBackPage = (opt = {
   const activeBranch = context[activeView];
   const activeSector = activeBranch[activeBranch.length - 1];
 
-  const nextIndex = indexStay(opt.toStay, activeBranch);
+  const nextIndex = indexStay(opt.toStay || false, activeBranch);
   const nextSector = activeBranch[nextIndex];
 
   if (activeBranch.length === 1) {

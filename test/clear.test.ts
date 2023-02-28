@@ -8,10 +8,6 @@ test("clear snapshot", () => {
     panel: "profile",
   });
 
-  next_snapshot({
-    view: "error"
-  });
-
   const nextBranch = () => {
     next_snapshot({
       view: "error",

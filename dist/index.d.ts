@@ -12,11 +12,10 @@ type TNextPage = (options: Partial<{
 } & Record<string, any>>) => void;
 declare const nextPage: TNextPage;
 
-type TBackPage = (opt: {
+declare const backPage: (opt?: {
     ignoreFreeze: boolean;
     toStay: boolean | string;
 }) => void;
-declare const backPage: TBackPage;
 
 declare const useParams: () => Record<string, string | number>;
 

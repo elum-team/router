@@ -16,7 +16,6 @@
     "rollup": "latest",
     "rollup-plugin-dts": "latest",
     "rollup-plugin-esbuild": "latest",
-    "run-script-os": "^1.1.6",
     "tsconfig-paths": "latest",
     "tslib": "latest",
     "typescript": "latest"

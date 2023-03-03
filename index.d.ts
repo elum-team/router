@@ -5,7 +5,7 @@ type TNextPage = (options: Partial<{
     panel: string;
     modal: string;
     popout: string;
-    stay: boolean;
+    stay: boolean | string;
     freeze: boolean;
     clear: boolean;
     params: Record<string, string | number>;

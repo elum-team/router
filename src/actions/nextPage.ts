@@ -49,7 +49,7 @@ const nextPage: TNextPage = (options) => {
     activeBranch.push(newSector);
   }
 
-  if (isInit || !isEqual) {
+  if (currentView !== activeView || isInit || !isEqual) {
     setter(ACTIVE_VIEW, activeView);
     setter(ACTIVE_PANEL, newSector["panel"]);
     setter(ACTIVE_MODAL, newSector["modal"]);

@@ -8,7 +8,7 @@ type TNextPage = (options: Partial<{
   panel: string;
   modal: string;
   popout: string;
-  stay: boolean;
+  stay: boolean | string;
   freeze: boolean;
   clear: boolean;
   params: Record<string, string | number>;
@@ -29,12 +29,12 @@ const nextPage: TNextPage = (options) => {
   const activeSector = activeBranch[activeBranch.length - 1];
 
   const newSector: Sector = {
-    panel: options["panel"] || activeSector["panel"],
-    modal: options["modal"] || activeSector["modal"],
-    popout: options["popout"] || activeSector["popout"],
-    stay: options["stay"] || defaultSector["stay"],
-    freeze: options["freeze"] || defaultSector["freeze"],
-    params: options["params"] || activeSector["params"]
+    panel: options["panel"] || activeSector.panel,
+    modal: options["modal"] || activeSector.modal,
+    popout: options["popout"] || activeSector.popout,
+    stay: options["stay"] || defaultSector.stay,
+    freeze: options["freeze"] || defaultSector.freeze,
+    params: options["params"] || activeSector.params
   };
 
   for (let i = parts.length - 1; i >= 0; i--) {

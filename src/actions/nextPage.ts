@@ -3,16 +3,12 @@ import { getter, setter } from "elum-state";
 import { Sector } from "../types";
 import equal from "./equal";
 
-type TNextPage = (options: Partial<{
-  view: string;
-  panel: string;
-  modal: string;
-  popout: string;
-  stay: boolean | string;
-  freeze: boolean;
+interface PageOPT extends Sector {
+  view: string,
   clear: boolean;
-  params: Record<string, string | number>;
-} & Record<string, any>>) => void;
+}
+
+type TNextPage = (options: Partial<PageOPT>) => void;
 
 const parts = ["view", "panel", "modal", "popout"];
 

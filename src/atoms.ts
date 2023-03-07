@@ -1,5 +1,5 @@
 import { atom } from "elum-state";
-import { Sector } from "./types";
+import { ParamsData, Sector } from "./types";
 
 const defaultSector: Sector = {
   panel: "default",
@@ -16,7 +16,7 @@ const ACTIVE_VIEW = atom<string>({ key: "router_active_view" });
 const ACTIVE_PANEL = atom<string>({ key: "router_active_panel" });
 const ACTIVE_MODAL = atom<string>({ key: "router_active_modal" });
 const ACTIVE_POPOUT = atom<string>({ key: "router_active_popout" });
-const ACTIVE_PARAMS = atom<Record<string, string | number>>({ key: "router_active_params" });
+const ACTIVE_PARAMS = atom<Record<string, ParamsData>>({ key: "router_active_params" });
 
 export {
   context,

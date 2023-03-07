@@ -1,15 +1,20 @@
 import { FC, HTMLAttributes } from 'react';
 
-type TNextPage = (options: Partial<{
-    view: string;
+type Sector = {
     panel: string;
-    modal: string;
-    popout: string;
-    stay: boolean | string;
-    freeze: boolean;
+    modal?: string;
+    popout?: string;
+    stay?: boolean | string;
+    freeze?: boolean;
+    params: Record<string, ParamsData>;
+} & Record<string, any>;
+type ParamsData = string | number | boolean;
+
+interface PageOPT extends Sector {
+    view: string;
     clear: boolean;
-    params: Record<string, string | number>;
-} & Record<string, any>>) => void;
+}
+type TNextPage = (options: Partial<PageOPT>) => void;
 declare const nextPage: TNextPage;
 
 declare const backPage: (opt?: Partial<{
@@ -17,7 +22,7 @@ declare const backPage: (opt?: Partial<{
     toStay: boolean | string;
 }>) => void;
 
-declare const useParams: () => Record<string, string | number>;
+declare const useParams: <T extends Record<string, ParamsData>>() => T;
 
 type TAtoms = "view" | "panel" | "modal" | "popout";
 declare const useRouter: (atom: TAtoms) => string;

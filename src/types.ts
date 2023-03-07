@@ -4,5 +4,7 @@ export type Sector = {
   popout?: string;
   stay?: boolean | string;
   freeze?: boolean;
-  params: Record<string, string | number>;
+  params: Record<string, ParamsData>;
 } & Record<string, any>;
+
+export type ParamsData = string | number | boolean;

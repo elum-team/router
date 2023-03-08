@@ -14,6 +14,8 @@ const parts = ["view", "panel", "modal", "popout"];
 
 const nextPage: TNextPage = (options) => {
 
+  window.history.pushState(null, "");
+
   const currentView = getter(ACTIVE_VIEW);
   const activeView = options["view"] || currentView;
 

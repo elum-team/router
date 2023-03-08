@@ -12,6 +12,8 @@ const backPage = (opt: Partial<{
   toStay: false
 }) => {
 
+  window.history.pushState(null, "");
+
   const activeView = getter(ACTIVE_VIEW);
   const activeBranch = context[activeView];
   const activeSector = activeBranch[activeBranch.length - 1];

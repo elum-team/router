@@ -8,11 +8,13 @@ const backPage = (opt: Partial<{
   ignoreFreeze: boolean,
   toStay: boolean | string;
 }> = {
-  ignoreFreeze: false,
-  toStay: false
-}) => {
+    ignoreFreeze: false,
+    toStay: false
+  }) => {
 
-  window.history.pushState(null, "");
+  if (window.location.protocol !== "file:") {
+    window.history.pushState(null, "");
+  }
 
   const activeView = getter(ACTIVE_VIEW);
   const activeBranch = context[activeView];

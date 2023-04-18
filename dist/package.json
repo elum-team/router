@@ -1,6 +1,6 @@
 {
   "name": "@elum/router",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Elum Router - Router for vk mini apps on reactjs",
   "main": "index.js",
   "module": "index.mjs",

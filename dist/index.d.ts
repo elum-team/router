@@ -69,6 +69,9 @@ declare const listAtom: {
 declare const useRouter: (atom: keyof typeof listAtom) => string;
 
 declare const useNotify: () => {
+    type: undefined;
+    params: {};
+} | {
     type: string;
     params: Record<string, ParamsData>;
 };

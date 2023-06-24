@@ -2,8 +2,9 @@ import { ACTIVE_NOTIFY } from "../atoms";
 import { useGlobalValue } from "elum-state";
 
 const useNotify = () => {
-  const { type, params } = useGlobalValue(ACTIVE_NOTIFY);
-  return { type, params };
+  const data = useGlobalValue(ACTIVE_NOTIFY);
+  if (!data) { return { type: undefined, params: {} } };
+  return { type: data.type, params: data.params };
 }
 
 export default useNotify;

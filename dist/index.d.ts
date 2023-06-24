@@ -1,5 +1,6 @@
 import * as react from 'react';
 import { FC, HTMLAttributes } from 'react';
+import { ParamsData as ParamsData$1 } from 'types';
 
 type Sector = {
     panel: string;
@@ -68,13 +69,11 @@ declare const listAtom: {
 };
 declare const useRouter: (atom: keyof typeof listAtom) => string;
 
-declare const useNotify: () => {
-    type: undefined;
-    params: {};
-} | {
-    type: string;
-    params: Record<string, ParamsData>;
+type UseNotify = () => {
+    type?: string;
+    params: Record<string, ParamsData$1>;
 };
+declare const useNotify: UseNotify;
 
 interface IRouter extends HTMLAttributes<HTMLDivElement> {
     branch: string;

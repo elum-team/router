@@ -1,7 +1,17 @@
-import { ACTIVE_MODAL, ACTIVE_PANEL, ACTIVE_PARAMS, ACTIVE_POPOUT, ACTIVE_VIEW, context, defaultSector } from "../atoms";
+
 import { getter, setter } from "elum-state";
-import { Sector } from "../types";
-import equal from "./equal";
+import { Sector } from "../../types";
+import equal from "../../libs/equal";
+
+import {
+  ACTIVE_MODAL,
+  ACTIVE_PANEL,
+  ACTIVE_PARAMS,
+  ACTIVE_POPOUT,
+  ACTIVE_VIEW,
+  context,
+  defaultSector
+} from "../../atoms";
 
 interface PageOPT extends Sector {
   view: string,
@@ -16,7 +26,7 @@ const nextPage: TNextPage = (options) => {
 
   if (window.location.protocol !== "file:") {
     window.history.pushState(null, "");
-  }
+  };
 
   const currentView = getter(ACTIVE_VIEW);
   const activeView = options["view"] || currentView;
@@ -41,13 +51,10 @@ const nextPage: TNextPage = (options) => {
     const key = parts[i];
     if (options[key]) { break; };
     newSector[key] = defaultSector[key];
-  }
+  };
 
   const isEqual = equal(activeSector, newSector);
-
-  if (!isEqual) {
-    activeBranch.push(newSector);
-  }
+  !isEqual && activeBranch.push(newSector);
 
   if (currentView !== activeView || isInit || !isEqual) {
     setter(ACTIVE_VIEW, activeView);
@@ -55,11 +62,11 @@ const nextPage: TNextPage = (options) => {
     setter(ACTIVE_MODAL, newSector["modal"]);
     setter(ACTIVE_POPOUT, newSector["popout"]);
     setter(ACTIVE_PARAMS, newSector["params"]);
-  }
+  };
 
   if (options.clear && currentView !== activeView) {
     context[currentView] = [defaultSector];
-  }
+  };
 
 };
 

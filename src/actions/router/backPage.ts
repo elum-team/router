@@ -1,8 +1,17 @@
-import { ACTIVE_MODAL, ACTIVE_PANEL, ACTIVE_PARAMS, ACTIVE_POPOUT, ACTIVE_VIEW, context } from "../atoms";
 import { getter, setter } from "elum-state";
-import { Sector } from "../types";
-import indexStay from "./indexStay";
 import bridge from "@vkontakte/vk-bridge";
+
+import { Sector } from "../../types";
+import indexStay from "../../libs/indexStay";
+
+import {
+  ACTIVE_MODAL,
+  ACTIVE_PANEL,
+  ACTIVE_PARAMS,
+  ACTIVE_POPOUT,
+  ACTIVE_VIEW,
+  context
+} from "../../atoms";
 
 const backPage = (opt: Partial<{
   ignoreFreeze: boolean,

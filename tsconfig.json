@@ -23,7 +23,7 @@
   },
   "include": [
     "**/*.ts",
-    "rollup.config.ts",
+    "rollup.config.ts", "test/setup.js",
   ],
   "exclude": ["node_modules","src/**/*.test.ts","index.ts","dist/**/*"]
 }

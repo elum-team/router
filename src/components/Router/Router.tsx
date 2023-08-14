@@ -1,7 +1,7 @@
-import React, { FC, Fragment, HTMLAttributes, useEffect } from "react";
+import { FC, HTMLAttributes, useEffect } from "react";
 import { getter } from "elum-state";
 import { backPage, nextPage } from "../../";
-import { ACTIVE_VIEW } from "../../atoms";
+import { ACTIVE_APP, ACTIVE_VIEW } from "../../atoms";
 
 interface IRouter extends HTMLAttributes<HTMLDivElement> {
     app?: string
@@ -9,10 +9,14 @@ interface IRouter extends HTMLAttributes<HTMLDivElement> {
 };
 
 const Router: FC<IRouter> = ({
+    app = "web",
     branch,
     children
 }) => {
-    if (!getter(ACTIVE_VIEW)) { nextPage({ view: branch }) }
+
+    if (!getter(ACTIVE_VIEW) || !getter(ACTIVE_APP)) {
+        nextPage({ app: app, view: branch })
+    }
 
     useEffect(() => {
         window.addEventListener("popstate", () => backPage());
@@ -21,7 +25,8 @@ const Router: FC<IRouter> = ({
         }
     }, []);
 
-    return (<Fragment>{children}</Fragment>);
+    return children
+
 }
 
 export default Router;

@@ -47,8 +47,6 @@ const nextPage: TNextPage = (options) => {
     }
   }
 
-  // if (isInit) { context[activeView] = [defaultSector] };
-
   const activeBranch = context[activeApp][activeView];
   const activeSector = activeBranch[activeBranch.length - 1];
 

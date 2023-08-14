@@ -4,6 +4,7 @@ import { next_snapshot } from ".";
 test("clear snapshot", () => {
 
   next_snapshot({
+    app: "test",
     view: "main",
     panel: "profile",
   });
@@ -13,7 +14,7 @@ test("clear snapshot", () => {
       view: "error",
       clear: true
     });
-    return context["main"];
+    return context["test"]["main"];
   }
 
   expect(nextBranch())

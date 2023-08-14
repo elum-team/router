@@ -1,5 +1,6 @@
 import { useGlobalValue } from "elum-state";
 import {
+  ACTIVE_APP,
   ACTIVE_MODAL,
   ACTIVE_PANEL,
   ACTIVE_POPOUT,
@@ -7,6 +8,7 @@ import {
 } from "../atoms";
 
 const listAtom = {
+  app: ACTIVE_APP,
   view: ACTIVE_VIEW,
   panel: ACTIVE_PANEL,
   modal: ACTIVE_MODAL,

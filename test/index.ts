@@ -1,5 +1,5 @@
 import { getter } from "elum-state";
-import { ACTIVE_MODAL, ACTIVE_PANEL, ACTIVE_PARAMS, ACTIVE_POPOUT, ACTIVE_VIEW } from "../src/atoms";
+import { ACTIVE_MODAL, ACTIVE_PANEL, ACTIVE_PARAMS, ACTIVE_POPOUT, ACTIVE_VIEW, context } from "../src/atoms";
 import { backPage, nextPage } from "../src/index";
 
 export const get = () => ({
@@ -18,4 +18,9 @@ export const next_snapshot = (input: any) => {
 export const back_snapshot = (opt?: any) => {
   backPage(opt)
   return get();
+}
+
+
+export const getAll = () => {
+  return context
 }

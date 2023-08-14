@@ -5,6 +5,7 @@ import { Sector } from "../../types";
 import indexStay from "../../libs/indexStay";
 
 import {
+  ACTIVE_APP,
   ACTIVE_MODAL,
   ACTIVE_PANEL,
   ACTIVE_PARAMS,
@@ -25,8 +26,9 @@ const backPage = (opt: Partial<{
     window.history.pushState(null, "");
   }
 
+  const activeApp = getter(ACTIVE_APP);
   const activeView = getter(ACTIVE_VIEW);
-  const activeBranch = context[activeView];
+  const activeBranch = context[activeApp][activeView];
   const activeSector = activeBranch[activeBranch.length - 1];
 
   const nextIndex = indexStay(opt.toStay || false, activeBranch);

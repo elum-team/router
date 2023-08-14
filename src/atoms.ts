@@ -10,8 +10,9 @@ const defaultSector: Sector = {
   params: {}
 };
 
-const context: Record<string, Array<Sector>> = {};
+const context: Record<string, Record<string, Array<Sector>>> = {};
 
+const ACTIVE_APP = atom<string>({ key: "router_active_app" });
 const ACTIVE_VIEW = atom<string>({ key: "router_active_view" });
 const ACTIVE_PANEL = atom<string>({ key: "router_active_panel" });
 const ACTIVE_MODAL = atom<string>({ key: "router_active_modal" });
@@ -24,6 +25,7 @@ export {
   context,
   defaultSector,
 
+  ACTIVE_APP,
   ACTIVE_VIEW,
   ACTIVE_PANEL,
   ACTIVE_MODAL,

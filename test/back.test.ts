@@ -1,8 +1,9 @@
-import { back_snapshot, next_snapshot } from ".";
+import { back_snapshot, getAll, next_snapshot } from ".";
 
 test("back", () => {
 
   next_snapshot({
+    app: "test",
     view: "main",
     panel: "profile",
   });

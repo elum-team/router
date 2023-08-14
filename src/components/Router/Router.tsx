@@ -4,6 +4,7 @@ import { backPage, nextPage } from "../../";
 import { ACTIVE_VIEW } from "../../atoms";
 
 interface IRouter extends HTMLAttributes<HTMLDivElement> {
+    app?: string
     branch: string;
 };
 

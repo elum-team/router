@@ -1,4 +1,4 @@
-import { ParamsData } from "types";
+import { ParamsData } from "../types";
 import { ACTIVE_NOTIFY } from "../atoms";
 import { useGlobalValue } from "elum-state";
 

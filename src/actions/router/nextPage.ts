@@ -9,18 +9,20 @@ import {
   ACTIVE_PARAMS,
   ACTIVE_POPOUT,
   ACTIVE_VIEW,
+  ACTIVE_APP,
   context,
   defaultSector
 } from "../../atoms";
 
 interface PageOPT extends Sector {
+  app: string;
   view: string,
   clear: boolean;
 }
 
 type TNextPage = (options: Partial<PageOPT>) => void;
 
-const parts = ["view", "panel", "modal", "popout"];
+const parts = ["app", "view", "panel", "modal", "popout"];
 
 const nextPage: TNextPage = (options) => {
 
@@ -28,14 +30,26 @@ const nextPage: TNextPage = (options) => {
     window.history.pushState(null, "");
   };
 
+  const currentApp = getter(ACTIVE_APP);
+  const activeApp = options["app"] || currentApp;
+
   const currentView = getter(ACTIVE_VIEW);
   const activeView = options["view"] || currentView;
 
-  const isInit = !context[activeView];
+  const isInit = !context[activeApp]?.[activeView];
 
-  if (isInit) { context[activeView] = [defaultSector] };
+  if (isInit) {
+    if (!context[activeApp]) {
+      context[activeApp] = {}
+    }
+    if (!context[activeApp][activeView]) {
+      context[activeApp][activeView] = [defaultSector]
+    }
+  }
 
-  const activeBranch = context[activeView];
+  // if (isInit) { context[activeView] = [defaultSector] };
+
+  const activeBranch = context[activeApp][activeView];
   const activeSector = activeBranch[activeBranch.length - 1];
 
   const newSector: Sector = {
@@ -56,7 +70,13 @@ const nextPage: TNextPage = (options) => {
   const isEqual = equal(activeSector, newSector);
   !isEqual && activeBranch.push(newSector);
 
-  if (currentView !== activeView || isInit || !isEqual) {
+  if (
+    currentApp !== activeApp ||
+    currentView !== activeView ||
+    isInit ||
+    !isEqual
+  ) {
+    setter(ACTIVE_APP, activeApp);
     setter(ACTIVE_VIEW, activeView);
     setter(ACTIVE_PANEL, newSector["panel"]);
     setter(ACTIVE_MODAL, newSector["modal"]);
@@ -65,7 +85,7 @@ const nextPage: TNextPage = (options) => {
   };
 
   if (options.clear && currentView !== activeView) {
-    context[currentView] = [defaultSector];
+    context[activeApp][currentView] = [defaultSector];
   };
 
 };

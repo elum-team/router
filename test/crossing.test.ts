@@ -3,10 +3,12 @@ import { next_snapshot } from ".";
 test("next", () => {
 
   next_snapshot({
+    app: "test",
     view: "main"
   })
 
   next_snapshot({
+    app: "test",
     view: "game",
     panel: "default"
   });

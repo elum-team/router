@@ -3,6 +3,7 @@ import { next_snapshot } from ".";
 test("next", () => {
 
   expect(next_snapshot({
+    app: "test",
     view: "main",
     panel: "profile",
     params: {

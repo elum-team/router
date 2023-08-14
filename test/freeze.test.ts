@@ -3,6 +3,7 @@ import { back_snapshot, next_snapshot } from ".";
 test("freeze", () => {
 
   expect(next_snapshot({
+    app: "test",
     view: "main",
     panel: "profile",
     freeze: true,

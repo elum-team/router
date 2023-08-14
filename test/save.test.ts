@@ -3,6 +3,7 @@ import { next_snapshot } from ".";
 test("save params snapshot", () => {
 
   next_snapshot({
+    app: "test",
     view: "main",
     panel: "profile",
     params: { id: 123 }

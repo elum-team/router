@@ -3,6 +3,7 @@ import { back_snapshot, next_snapshot } from ".";
 test("stay_string", () => {
 
   next_snapshot({
+    app: "test",
     view: "main",
     panel: "profile",
     params: {

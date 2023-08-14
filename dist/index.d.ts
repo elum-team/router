@@ -1,6 +1,5 @@
 import * as react from 'react';
 import { FC, HTMLAttributes } from 'react';
-import { ParamsData as ParamsData$1 } from 'types';
 
 type Sector = {
     panel: string;
@@ -19,6 +18,7 @@ type NOTIFY = {
 type ParamsData = string | number | boolean;
 
 interface PageOPT extends Sector {
+    app: string;
     view: string;
     clear: boolean;
 }
@@ -38,6 +38,13 @@ declare function hideNotify(type?: string): boolean;
 declare const useParams: <T extends Record<string, ParamsData>>() => T;
 
 declare const listAtom: {
+    app: {
+        key: string;
+        default: string;
+        get: () => string;
+        set: (v: any) => void;
+        sub: (handle: react.Dispatch<string>) => void;
+    };
     view: {
         key: string;
         default: string;
@@ -71,11 +78,12 @@ declare const useRouter: (atom: keyof typeof listAtom) => string;
 
 type UseNotify = () => {
     type?: string;
-    params: Record<string, ParamsData$1>;
+    params: Record<string, ParamsData>;
 };
 declare const useNotify: UseNotify;
 
 interface IRouter extends HTMLAttributes<HTMLDivElement> {
+    app?: string;
     branch: string;
 }
 declare const Router: FC<IRouter>;

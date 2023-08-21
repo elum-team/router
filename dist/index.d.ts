@@ -15,7 +15,7 @@ type NOTIFY = {
     params: Record<string, ParamsData>;
     callback: (value: Omit<NOTIFY, "callback"> | PromiseLike<Omit<NOTIFY, "callback">>) => void;
 };
-type ParamsData = string | number | boolean;
+type ParamsData = string | number | boolean | Record<string, any> | any[];
 
 interface PageOPT extends Sector {
     app: string;

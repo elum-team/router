@@ -1,4 +1,4 @@
-import * as react from 'react';
+import * as elum_state from 'elum-state';
 import { FC, HTMLAttributes } from 'react';
 
 type Sector = {
@@ -38,41 +38,11 @@ declare function hideNotify(type?: string): boolean;
 declare const useParams: <T extends Record<string, ParamsData>>() => T;
 
 declare const listAtom: {
-    app: {
-        key: string;
-        default: string;
-        get: () => string;
-        set: (v: any) => void;
-        sub: (handle: react.Dispatch<string>) => void;
-    };
-    view: {
-        key: string;
-        default: string;
-        get: () => string;
-        set: (v: any) => void;
-        sub: (handle: react.Dispatch<string>) => void;
-    };
-    panel: {
-        key: string;
-        default: string;
-        get: () => string;
-        set: (v: any) => void;
-        sub: (handle: react.Dispatch<string>) => void;
-    };
-    modal: {
-        key: string;
-        default: string;
-        get: () => string;
-        set: (v: any) => void;
-        sub: (handle: react.Dispatch<string>) => void;
-    };
-    popout: {
-        key: string;
-        default: string;
-        get: () => string;
-        set: (v: any) => void;
-        sub: (handle: react.Dispatch<string>) => void;
-    };
+    app: elum_state.GlobalAtom<string>;
+    view: elum_state.GlobalAtom<string>;
+    panel: elum_state.GlobalAtom<string>;
+    modal: elum_state.GlobalAtom<string>;
+    popout: elum_state.GlobalAtom<string>;
 };
 declare const useRouter: (atom: keyof typeof listAtom) => string;
 
@@ -88,54 +58,12 @@ interface IRouter extends HTMLAttributes<HTMLDivElement> {
 }
 declare const Router: FC<IRouter>;
 
-declare const ACTIVE_APP: {
-    key: string;
-    default: string;
-    get: () => string;
-    set: (v: any) => void;
-    sub: (handle: react.Dispatch<string>) => void;
-};
-declare const ACTIVE_VIEW: {
-    key: string;
-    default: string;
-    get: () => string;
-    set: (v: any) => void;
-    sub: (handle: react.Dispatch<string>) => void;
-};
-declare const ACTIVE_PANEL: {
-    key: string;
-    default: string;
-    get: () => string;
-    set: (v: any) => void;
-    sub: (handle: react.Dispatch<string>) => void;
-};
-declare const ACTIVE_MODAL: {
-    key: string;
-    default: string;
-    get: () => string;
-    set: (v: any) => void;
-    sub: (handle: react.Dispatch<string>) => void;
-};
-declare const ACTIVE_POPOUT: {
-    key: string;
-    default: string;
-    get: () => string;
-    set: (v: any) => void;
-    sub: (handle: react.Dispatch<string>) => void;
-};
-declare const ACTIVE_NOTIFY: {
-    key: string;
-    default: NOTIFY;
-    get: () => NOTIFY;
-    set: (v: any) => void;
-    sub: (handle: react.Dispatch<NOTIFY>) => void;
-};
-declare const ACTIVE_PARAMS: {
-    key: string;
-    default: Record<string, ParamsData>;
-    get: () => Record<string, ParamsData>;
-    set: (v: any) => void;
-    sub: (handle: react.Dispatch<Record<string, ParamsData>>) => void;
-};
+declare const ACTIVE_APP: elum_state.GlobalAtom<string>;
+declare const ACTIVE_VIEW: elum_state.GlobalAtom<string>;
+declare const ACTIVE_PANEL: elum_state.GlobalAtom<string>;
+declare const ACTIVE_MODAL: elum_state.GlobalAtom<string>;
+declare const ACTIVE_POPOUT: elum_state.GlobalAtom<string>;
+declare const ACTIVE_NOTIFY: elum_state.GlobalAtom<NOTIFY>;
+declare const ACTIVE_PARAMS: elum_state.GlobalAtom<Record<string, ParamsData>>;
 
 export { ACTIVE_APP, ACTIVE_MODAL, ACTIVE_NOTIFY, ACTIVE_PANEL, ACTIVE_PARAMS, ACTIVE_POPOUT, ACTIVE_VIEW, Router, backPage, hideNotify, nextPage, showNotify, useNotify, useParams, useRouter };

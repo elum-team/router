@@ -88,4 +88,54 @@ interface IRouter extends HTMLAttributes<HTMLDivElement> {
 }
 declare const Router: FC<IRouter>;
 
-export { Router, backPage, hideNotify, nextPage, showNotify, useNotify, useParams, useRouter };
+declare const ACTIVE_APP: {
+    key: string;
+    default: string;
+    get: () => string;
+    set: (v: any) => void;
+    sub: (handle: react.Dispatch<string>) => void;
+};
+declare const ACTIVE_VIEW: {
+    key: string;
+    default: string;
+    get: () => string;
+    set: (v: any) => void;
+    sub: (handle: react.Dispatch<string>) => void;
+};
+declare const ACTIVE_PANEL: {
+    key: string;
+    default: string;
+    get: () => string;
+    set: (v: any) => void;
+    sub: (handle: react.Dispatch<string>) => void;
+};
+declare const ACTIVE_MODAL: {
+    key: string;
+    default: string;
+    get: () => string;
+    set: (v: any) => void;
+    sub: (handle: react.Dispatch<string>) => void;
+};
+declare const ACTIVE_POPOUT: {
+    key: string;
+    default: string;
+    get: () => string;
+    set: (v: any) => void;
+    sub: (handle: react.Dispatch<string>) => void;
+};
+declare const ACTIVE_NOTIFY: {
+    key: string;
+    default: NOTIFY;
+    get: () => NOTIFY;
+    set: (v: any) => void;
+    sub: (handle: react.Dispatch<NOTIFY>) => void;
+};
+declare const ACTIVE_PARAMS: {
+    key: string;
+    default: Record<string, ParamsData>;
+    get: () => Record<string, ParamsData>;
+    set: (v: any) => void;
+    sub: (handle: react.Dispatch<Record<string, ParamsData>>) => void;
+};
+
+export { ACTIVE_APP, ACTIVE_MODAL, ACTIVE_NOTIFY, ACTIVE_PANEL, ACTIVE_PARAMS, ACTIVE_POPOUT, ACTIVE_VIEW, Router, backPage, hideNotify, nextPage, showNotify, useNotify, useParams, useRouter };

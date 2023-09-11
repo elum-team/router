@@ -1,6 +1,6 @@
 {
   "name": "@elum/router",
-  "version": "0.0.14-beta.4",
+  "version": "0.0.14-beta.5",
   "description": "Elum Router - Router for vk mini apps on reactjs",
   "main": "index.js",
   "module": "index.mjs",
@@ -27,7 +27,7 @@
   "peerDependencies": {
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "elum-state": "^0.4.0",
+    "elum-state": "^0.6.2",
     "@vkontakte/vk-bridge": "^2"
   }
 }

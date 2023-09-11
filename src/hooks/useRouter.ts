@@ -24,8 +24,9 @@ const useRouter = (atom: keyof typeof listAtom): string => {
   const [value, setValue] = useState(atomValue);
 
   useEffect(() => {
-    getter(ACTIVE_APP) === snapshot &&
+    if(atom === "app" || getter(ACTIVE_APP) === snapshot) {
       setValue(atomValue)
+    }
   }, [atomValue]);
 
   return value;

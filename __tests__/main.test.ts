@@ -202,11 +202,26 @@ test.each([
       expect(data).toMatchObject({ type: "buy", params: {} })
       expect(start > Date.now() - 3100).toBe(true)
     });
-
     setTimeout(() => { expect(hideNotify()).toBe(true); }, 3000);
+  }],
+
+  ["context", () => {
+    next({
+      app: "game",
+      view: "home",
+    });
+    expect(next({
+      app: "main"
+    })).toMatchObject({
+      app: "main",
+      view: "home",
+      panel: "default",
+      modal: undefined,
+      popout: undefined,
+      params: {}
+    })
   }]
 
 ])("test", (name, func) => {
-  console.log(name, context)
   func()
 })

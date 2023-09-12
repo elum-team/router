@@ -38,6 +38,11 @@ const backPage = (opt: Partial<{
   const activeSector = activeBranch.at(-1);
   if (activeSector && activeSector.freeze && !opt.ignoreFreeze) { return; };
 
+  context[activeApp].__snapshot = [{
+    view: activeView,
+    ...activeBranch[nextIndex]
+  }];
+
   setter(ACTIVE_APP, activeApp);
   setter(ACTIVE_VIEW, activeView);
   setter(ACTIVE_PANEL, activeBranch[nextIndex].panel);

@@ -1,24 +1,41 @@
 type Object = Record<string, any>;
 
-const equal = (first: Object, second: Object): boolean => {
-  const keys = Object.keys(first);
-  return keys.every((key) => {
+const equal = (a: Object, b: Object) => {
+  if (a === b) return true;
 
-    const typeFirst = (Object.prototype.toString.call(first[key]));
-    const typeSecond = (Object.prototype.toString.call(second[key]));
+  if (a && b && typeof a == 'object' && typeof b == 'object') {
+    if (a.constructor !== b.constructor) return false;
 
-    if (typeFirst != typeSecond) { return false }
-
-    switch (typeFirst) {
-      case "[object String]": return first[key] === second[key];
-      case "[object Number]": return first[key] === second[key];
-      case "[object Boolean]": return first[key] === second[key];
-      case "[object Object]": return equal(first[key], second[key]);
-      case "[object Array]": return equal(first[key], second[key]);
-      default: return false;
+    var length, i, keys;
+    if (Array.isArray(a)) {
+      length = a.length;
+      if (length != b.length) return false;
+      for (i = length; i-- !== 0;)
+        if (!equal(a[i], b[i])) return false;
+      return true;
     }
 
-  })
+    if (a.constructor === RegExp) return ((a as any).source === b.source) && ((a as any).flags === b.flags);
+    if (a.valueOf !== Object.prototype.valueOf) return a.valueOf() === b.valueOf();
+    if (a.toString !== Object.prototype.toString) return a.toString() === b.toString();
+
+    keys = Object.keys(a);
+    length = keys.length;
+    if (length !== Object.keys(b).length) return false;
+
+    for (i = length; i-- !== 0;)
+      if (!Object.prototype.hasOwnProperty.call(b, keys[i])) return false;
+
+    for (i = length; i-- !== 0;) {
+      var key = keys[i];
+
+      if (!equal(a[key], b[key])) return false;
+    }
+
+    return true;
+  }
+
+  return a !== a && b !== b;
 }
 
 export default equal;

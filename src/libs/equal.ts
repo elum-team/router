@@ -1,6 +1,6 @@
-type Object = Record<string, any>;
+import { Sector } from "types";
 
-const equal = (a: Object, b: Object) => {
+const equal = (a?: Sector, b?: Sector) => {
   if (a === b) return true;
 
   if (a && b && typeof a == 'object' && typeof b == 'object') {
@@ -34,7 +34,6 @@ const equal = (a: Object, b: Object) => {
 
     return true;
   }
-
   return a !== a && b !== b;
 }
 

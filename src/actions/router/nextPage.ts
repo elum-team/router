@@ -23,7 +23,7 @@ interface PageOPT extends Sector {
 type TNextPage = (options: Partial<PageOPT>) => void;
 
 // const parts: Array<keyof Partial<PageOPT>> = ["app", "view", "panel", "modal", "popout"];
-const parts: Array<keyof Partial<PageOPT>> = ["params", "popout", "modal", "panel"];
+const parts: Array<keyof Partial<PageOPT>> = ["popout", "modal", "panel"];
 
 const nextPage: TNextPage = (options) => {
 
@@ -76,8 +76,8 @@ const nextPage: TNextPage = (options) => {
     }
   }
 
-  const isEqual = equal(context[activeApp][activeView].at(-1) || [], newSector);
-  !isEqual && context[activeApp][activeView].push(newSector);
+  const isEqual = equal(context[activeApp][activeView].at(-1), newSector);
+  if (!isEqual) { context[activeApp][activeView].push(newSector); }
 
   context[activeApp].__snapshot = [{
     view: activeView,

@@ -222,6 +222,4 @@ test.each([
     })
   }]
 
-])("test", (name, func) => {
-  func()
-})
+])("test", (name, func) => { func() })

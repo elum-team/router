@@ -10,7 +10,10 @@ const defaultSector: Sector = {
   params: {}
 };
 
-const context: Record<string, Record<string, Array<Sector>>> = {};
+const context: Record<string, {
+  __snapshot: Sector[],
+  [key: string]: Array<Sector>
+}> = {};
 
 const ACTIVE_APP = atom<string>({ key: "router_active_app" });
 const ACTIVE_VIEW = atom<string>({ key: "router_active_view" });

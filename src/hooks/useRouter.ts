@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { getter, useGlobalValue } from "elum-state";
 import {
   ACTIVE_APP,
@@ -6,7 +7,6 @@ import {
   ACTIVE_POPOUT,
   ACTIVE_VIEW
 } from "../atoms";
-import { useEffect, useRef, useState } from "react";
 
 const listAtom = {
   app: ACTIVE_APP,
@@ -24,7 +24,7 @@ const useRouter = (atom: keyof typeof listAtom): string => {
   const [value, setValue] = useState(atomValue);
 
   useEffect(() => {
-    if(atom === "app" || getter(ACTIVE_APP) === snapshot) {
+    if (atom === "app" || getter(ACTIVE_APP) === snapshot) {
       setValue(atomValue)
     }
   }, [atomValue]);

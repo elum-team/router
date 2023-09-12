@@ -2,7 +2,7 @@
   "compilerOptions": {
     "jsx": "react",
     "target": "esnext",
-    "baseUrl": ".",
+    "baseUrl": "./_test",
     "sourceMap": true,
     "noImplicitAny": true,
     "strictNullChecks": true,

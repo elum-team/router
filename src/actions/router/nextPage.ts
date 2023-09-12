@@ -1,7 +1,5 @@
-
 import { getter, setter } from "elum-state";
 import { Sector } from "../../types";
-import equal from "../../libs/equal";
 
 import {
   ACTIVE_MODAL,
@@ -14,6 +12,8 @@ import {
   defaultSector
 } from "../../atoms";
 
+import equal from "../../libs/equal";
+
 interface PageOPT extends Sector {
   app: string;
   view: string,
@@ -22,7 +22,8 @@ interface PageOPT extends Sector {
 
 type TNextPage = (options: Partial<PageOPT>) => void;
 
-const parts = ["app", "view", "panel", "modal", "popout"];
+// const parts: Array<keyof Partial<PageOPT>> = ["app", "view", "panel", "modal", "popout"];
+const parts: Array<keyof Partial<PageOPT>> = ["params", "popout", "modal", "panel"];
 
 const nextPage: TNextPage = (options) => {
 
@@ -31,61 +32,70 @@ const nextPage: TNextPage = (options) => {
   };
 
   const currentApp = getter(ACTIVE_APP);
-  const activeApp = options["app"] || currentApp;
+  const optionsApp = options.app;
+  const activeApp = optionsApp || currentApp;
 
-  const currentView = getter(ACTIVE_VIEW);
-  const activeView = options["view"] || currentView;
+  const isShift = !!(optionsApp && optionsApp !== currentApp);
+  const snapshot = context[activeApp]?.__snapshot;
+
+  const currentView = (isShift && Array.isArray(snapshot)) ? snapshot[0].view : getter(ACTIVE_VIEW);
+  const activeView = options.view || currentView;
 
   const isInit = !context[activeApp]?.[activeView];
 
   if (isInit) {
     if (!context[activeApp]) {
-      context[activeApp] = {}
+      context[activeApp] = { __snapshot: [] }
     }
     if (!context[activeApp][activeView]) {
       context[activeApp][activeView] = [defaultSector]
     }
   }
 
-  const activeBranch = context[activeApp][activeView];
-  const activeSector = activeBranch[activeBranch.length - 1];
+  if (!Array.isArray(context[activeApp]?.__snapshot)) {
+    context[activeApp!].__snapshot = []
+  }
+
+  const sector: Sector = (isShift && Array.isArray(snapshot)) ?
+    snapshot[0] :
+    context[activeApp][activeView].at(-1)!;
 
   const newSector: Sector = {
-    panel: options["panel"] || activeSector.panel,
-    modal: options["modal"] || activeSector.modal,
-    popout: options["popout"] || activeSector.popout,
-    stay: options["stay"] || defaultSector.stay,
-    freeze: options["freeze"] || defaultSector.freeze,
-    params: options["params"] || activeSector.params
+    panel: options.panel || sector.panel,
+    modal: options.modal || sector.modal,
+    popout: options.popout || sector.popout,
+    stay: options.stay || defaultSector.stay,
+    freeze: options.freeze || defaultSector.freeze,
+    params: options.params || sector.params
   };
 
-  for (let i = parts.length - 1; i >= 0; i--) {
-    const key = parts[i];
-    if (options[key]) { break; };
-    newSector[key] = defaultSector[key];
-  };
+  if (!isShift) {
+    for (let key of parts) {
+      if (options[key]) { break; };
+      newSector[key] = defaultSector[key];
+    }
+  }
 
-  const isEqual = equal(activeSector, newSector);
-  !isEqual && activeBranch.push(newSector);
+  const isEqual = equal(context[activeApp][activeView].at(-1) || [], newSector);
+  !isEqual && context[activeApp][activeView].push(newSector);
 
-  if (
-    currentApp !== activeApp ||
-    currentView !== activeView ||
-    isInit ||
-    !isEqual
-  ) {
-    setter(ACTIVE_APP, activeApp);
-    setter(ACTIVE_VIEW, activeView);
-    setter(ACTIVE_PANEL, newSector["panel"]);
-    setter(ACTIVE_MODAL, newSector["modal"]);
-    setter(ACTIVE_POPOUT, newSector["popout"]);
-    setter(ACTIVE_PARAMS, newSector["params"]);
-  };
+  context[activeApp].__snapshot = [{
+    view: activeView,
+    ...newSector
+  }];
+
+  setter(ACTIVE_APP, activeApp);
+  setter(ACTIVE_VIEW, activeView);
+  setter(ACTIVE_PANEL, newSector.panel);
+  setter(ACTIVE_MODAL, newSector.modal);
+  setter(ACTIVE_POPOUT, newSector.popout);
+  setter(ACTIVE_PARAMS, newSector.params);
 
   if (options.clear && currentView !== activeView) {
+    context[activeApp].__snapshot = [defaultSector];
     context[activeApp][currentView] = [defaultSector];
   };
 
-};
+}
 
 export default nextPage;

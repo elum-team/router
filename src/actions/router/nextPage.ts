@@ -23,7 +23,7 @@ interface PageOPT extends Sector {
 type TNextPage = (options: Partial<PageOPT>) => void;
 
 // const parts: Array<keyof Partial<PageOPT>> = ["app", "view", "panel", "modal", "popout"];
-const parts: Array<keyof Partial<PageOPT>> = ["popout", "modal", "panel"];
+const parts: Array<keyof Partial<PageOPT>> = ["popout", "modal", "panel",];
 
 const nextPage: TNextPage = (options) => {
 

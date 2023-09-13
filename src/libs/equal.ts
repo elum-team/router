@@ -23,12 +23,10 @@ const equal = (a?: Sector, b?: Sector) => {
     length = keys.length;
     if (length !== Object.keys(b).length) return false;
 
-    for (i = length; i-- !== 0;)
-      if (!Object.prototype.hasOwnProperty.call(b, keys[i])) return false;
-
     for (i = length; i-- !== 0;) {
       var key = keys[i];
-
+      if (["stay", "freeze", "params"].includes(key)) { continue; };
+      if (!Object.prototype.hasOwnProperty.call(b, key)) return false;
       if (!equal(a[key], b[key])) return false;
     }
 

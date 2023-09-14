@@ -17,12 +17,14 @@ type NOTIFY = {
 };
 type ParamsData = string | number | boolean | Record<string, any> | any[];
 
+type Keys = "stay" | "freeze" | "params" | string;
+
 interface PageOPT extends Sector {
     app: string;
     view: string;
     clear: boolean;
 }
-type TNextPage = (options: Partial<PageOPT>) => void;
+type TNextPage = (options: Partial<PageOPT>, exclude?: Keys[]) => void;
 declare const nextPage: TNextPage;
 
 declare const backPage: (opt?: Partial<{

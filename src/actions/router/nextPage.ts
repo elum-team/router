@@ -12,7 +12,7 @@ import {
   defaultSector
 } from "../../atoms";
 
-import equal from "../../libs/equal";
+import equal, { Keys } from "../../libs/equal";
 
 interface PageOPT extends Sector {
   app: string;
@@ -20,12 +20,12 @@ interface PageOPT extends Sector {
   clear: boolean;
 }
 
-type TNextPage = (options: Partial<PageOPT>) => void;
+type TNextPage = (options: Partial<PageOPT>, exclude?: Keys[]) => void;
 
 // const parts: Array<keyof Partial<PageOPT>> = ["app", "view", "panel", "modal", "popout"];
 const parts: Array<keyof Partial<PageOPT>> = ["popout", "modal", "panel",];
 
-const nextPage: TNextPage = (options) => {
+const nextPage: TNextPage = (options, exclude) => {
 
   if (window.location.protocol !== "file:") {
     window.history.pushState(null, "");
@@ -76,7 +76,7 @@ const nextPage: TNextPage = (options) => {
     }
   }
 
-  const isEqual = equal(context[activeApp][activeView].at(-1), newSector);
+  const isEqual = equal(context[activeApp][activeView].at(-1), newSector, exclude || []);
   if (!isEqual) { context[activeApp][activeView].push(newSector); }
 
   context[activeApp].__snapshot = [{

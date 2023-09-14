@@ -1,6 +1,6 @@
 import { Sector } from "types";
 
-type Keys = "stay" | "freeze" | "params" | string;
+export type Keys = "stay" | "freeze" | "params" | string;
 
 const equal = (a?: Sector, b?: Sector, exclude: Keys[] = []) => {
   if (a === b) return true;

@@ -1,6 +1,8 @@
 import { Sector } from "types";
 
-const equal = (a?: Sector, b?: Sector) => {
+type Keys = "stay" | "freeze" | "params" | string;
+
+const equal = (a?: Sector, b?: Sector, exclude: Keys[] = []) => {
   if (a === b) return true;
 
   if (a && b && typeof a == 'object' && typeof b == 'object') {
@@ -25,7 +27,7 @@ const equal = (a?: Sector, b?: Sector) => {
 
     for (i = length; i-- !== 0;) {
       var key = keys[i];
-      if (["stay", "freeze", "params"].includes(key)) { continue; };
+      if (exclude.includes(key)) { continue; };
       if (!Object.prototype.hasOwnProperty.call(b, key)) return false;
       if (!equal(a[key], b[key])) return false;
     }

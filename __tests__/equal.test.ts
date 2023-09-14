@@ -40,7 +40,8 @@ test.each([
         stay: false,
         freeze: false,
         params: {}
-      }
+      },
+      ["stay", "freeze"]
     )).toBe(true)
   }],
 
@@ -65,4 +66,4 @@ test.each([
     )).toBe(false)
   }]
 
-])("equal", (_, func) => func())
+])("equal", (_, func) => { func() })
